@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +19,7 @@ return new class extends Migration
             $table->string('category');
             $table->unsignedBigInteger('price');
             $table->text('location');
-            $table->unsignedBigInteger('status');
+            $table->enum('status', ['active', 'inactive', 'expired']);
             $table->timestamps();
         });
     }
