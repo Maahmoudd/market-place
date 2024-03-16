@@ -15,5 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
-    })->create();
+        $exceptions->render(function (Throwable $exception) {
+            return response()->json(['message' => 'Temporary Error, Please Try Again'], 500);
+        });
+    })
+    ->create();
