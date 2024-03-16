@@ -10,7 +10,6 @@ class UserService implements UserInterface
 {
     public function show($id)
     {
-
         $user = User::findOrFail($id);
         return UserResource::make($user);
     }
