@@ -6,6 +6,7 @@ use App\Enums\AdvertisementEnum;
 use App\Exceptions\NotAuthorizedException;
 use App\Http\Resources\AdvertisementResource;
 use App\Models\Advertisement;
+use Stripe\Stripe;
 
 class AdvertisementService
 {
@@ -18,12 +19,19 @@ class AdvertisementService
 
     public function store($request)
     {
+        $payment = $request->user()->checkout(['price_1OvFB1Rpv9ytv2FP97ePg2yY' => 1],
+            [
+                'success_url' => route('checkout-success'),
+                'cancel_url' => route('checkout-cancel'),
+            ]);
+
+
         $advertisement = Advertisement::create(
             array_merge(
                 $request->validated(),
                 ['user_id' => auth()->id(), 'status' => AdvertisementEnum::Active]
             ));
-        return AdvertisementResource::make($advertisement);
+        return [AdvertisementResource::make($advertisement), 'payment' => $payment];
     }
 
     public function show($id)

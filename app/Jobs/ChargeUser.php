@@ -27,6 +27,10 @@ class ChargeUser implements ShouldQueue
     public function handle(): void
     {
         $user = $this->user;
-        $user->checkoutCharge(100, 'Advertisement');
+        $user->checkout(['Advertisement' => 1],
+        [
+            'success_url' => route('checkout-success'),
+            'cancel_url' => route('checkout-cancel'),
+        ]);
     }
 }

@@ -12,8 +12,8 @@ class AdvertisementObserver
 
     public function created(Advertisement $advertisement): void
     {
-        $user = User::findOrFail($advertisement->user_id);
-        ChargeUser::dispatch($user);
+//        $user = User::findOrFail($advertisement->user_id);
+//        ChargeUser::dispatch($user);
 //        SendToUsers::dispatch($advertisement);
     }
 
