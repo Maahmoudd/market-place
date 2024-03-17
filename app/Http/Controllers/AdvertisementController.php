@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Interfaces\AdvertisementInterface;
 use App\Http\Requests\EditAdvertisementRequest;
 use App\Http\Requests\StoreAdvertisementRequest;
-use App\Http\Services\AdvertisementService;
+use App\Interfaces\AdvertisementInterface;
+use App\Services\AdvertisementService;
 
 class AdvertisementController extends Controller implements AdvertisementInterface
 {
-    protected $advertisementService;
-    public function __construct(AdvertisementService $advertisementService)
-    {
-        $this->advertisementService = $advertisementService;
-    }
+    public function __construct(public AdvertisementService $advertisementService){}
 
     public function index()
     {
