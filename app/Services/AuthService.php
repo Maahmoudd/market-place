@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
 use App\Exceptions\FailedLogin;
-use App\Http\Interfaces\AuthInterface;
 use App\Http\Resources\UserResource;
+use App\Interfaces\AuthInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +21,10 @@ class AuthService implements AuthInterface
         if (!Auth::attempt($request->validated())) {
             throw new FailedLogin();
         }
-        $token = $request->user()->createToken('remember_token');
 
-        return ['token' => $token->plainTextToken];
+        $token = $request->user()->createToken('remember_token');
+        $user = User::where('email', $request->email)->first();
+        return ['user' => UserResource::make($user), 'token' => $token->plainTextToken];
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Interfaces;
+namespace App\Interfaces;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;

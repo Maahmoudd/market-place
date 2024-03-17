@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Interfaces;
+namespace App\Interfaces;
 
 use App\Http\Requests\EditAdvertisementRequest;
 use App\Http\Requests\StoreAdvertisementRequest;

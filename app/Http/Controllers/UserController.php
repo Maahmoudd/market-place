@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Interfaces\UserInterface;
 use App\Http\Requests\EditProfileRequest;
-use App\Http\Services\UserService;
+use App\Interfaces\UserInterface;
+use App\Services\UserService;
 
 class UserController extends Controller implements UserInterface
 {
-    protected $userService;
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
-    }
+    public function __construct(public UserService $userService){}
 
     public function show($id)
     {

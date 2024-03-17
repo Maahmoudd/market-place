@@ -2,21 +2,15 @@
 
 namespace App\Observers;
 
+use App\Jobs\SendToUsers;
 use App\Models\Advertisement;
-use App\Models\User;
-use App\Notifications\AdvertisementCreatedNotification;
-use Illuminate\Database\Eloquent\Collection;
 
 class AdvertisementObserver
 {
 
     public function created(Advertisement $advertisement): void
     {
-        User::chunk(100, function (Collection $users) use ($advertisement) {
-           foreach ($users as $user){
-               $user->notify(new AdvertisementCreatedNotification($advertisement));
-           }
-        });
+        SendToUsers::dispatch($advertisement);
     }
 
     public function updated(Advertisement $advertisement): void

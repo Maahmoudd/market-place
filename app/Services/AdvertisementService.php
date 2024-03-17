@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
+use App\Enums\AdvertisementEnum;
 use App\Exceptions\NotAuthorizedException;
-use App\Http\Enums\AdvertisementEnum;
 use App\Http\Resources\AdvertisementResource;
 use App\Models\Advertisement;
-use Illuminate\Database\Eloquent\Collection;
 
 class AdvertisementService
 {
@@ -46,6 +45,7 @@ class AdvertisementService
     public function destroy($id)
     {
         $advertisement = Advertisement::findOrFail($id);
+        $x = 5;
         if ($advertisement->user_id != auth()->id()){
             throw new NotAuthorizedException();
         }
