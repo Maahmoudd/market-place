@@ -26,13 +26,7 @@ class ChargeUser implements ShouldQueue
      */
     public function handle(): void
     {
-        $stripePriceId = 'price_advertisement';
-
-        $quantity = 1;
         $user = $this->user;
-        $user->checkout([$stripePriceId => $quantity], [
-            'success_url' => 'checkout-success',
-            'cancel_url' => 'checkout-cancel',
-        ]);
+        $user->checkoutCharge(100, 'Advertisement');
     }
 }
