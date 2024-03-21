@@ -15,8 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->render(function (Throwable $exception) {
-            return response()->json(['message' => trans('validation.not_authorized')], 500);
-        });
+//        $exceptions->render(function (Throwable $exception) {
+//            return response()->json(['message' => trans('validation.not_authorized')], 500);
+//        });
     })
     ->create();

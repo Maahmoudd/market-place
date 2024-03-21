@@ -45,11 +45,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean'
         ];
     }
 
     public function advertisements(): HasMany
     {
         return $this->hasMany(Advertisement::class);
+    }
+
+    public function offices(): HasMany
+    {
+        return $this->hasMany(Office::class);
     }
 }
